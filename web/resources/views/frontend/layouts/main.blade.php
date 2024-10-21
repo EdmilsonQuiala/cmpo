@@ -26,18 +26,7 @@
 			@yield('pageTitle')
 		</div>
         <div class="right">
-            <a href="/checkout">
-                <div class="list-view">
-                    <ul>
-                        <li class="list-item">
-                            <div class="list-media">
-                                <i class="icon ion-ios-cart"></i>
-                                <span class="badge badge-danger">1</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </a>
+            <a href="about-us.html" class="link"><img src="{{ asset('frontend/images/cards/cmpo-logo.png') }}" alt=""></a>
 		</div>
 	</div>
 

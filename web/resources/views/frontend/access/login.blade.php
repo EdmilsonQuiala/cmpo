@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container d-flex justify-content-center">
-        <img src="{{ asset('frontend/images/logo/album-06.png') }}" alt="" class="img-fluid" width="60%">
+        <img src="{{ asset('frontend/images/cards/cmpo-logo-icon.png') }}" alt="" class="img-fluid" width="60%">
     </div>
     <div class="separator-medium"></div>
     <form class="form-fill" method="POST" action="{{ route('authenticate') }}" onsubmit="handleFormSubmit(event)">

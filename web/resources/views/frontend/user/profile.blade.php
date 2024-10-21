@@ -18,7 +18,7 @@
             <div class="col-4">
                 <div class="header-profile">
                     <div class="container">
-                        <img src="{{ asset('frontend/images/logo/icon.png') }}" alt="image-demo">
+                        <img src="{{ asset('frontend/images/cards/cmpo-logo.png') }}" alt="image-demo">
                     </div>
                 </div>
             </div>

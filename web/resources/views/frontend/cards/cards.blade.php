@@ -1,4 +1,4 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layouts.inner-pages')
 
 @section('content')
 @section('pageTitle', 'Gerir cartões')
@@ -9,7 +9,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="{{asset('frontend/images/cards/card-azul.png')}}" alt="image-demo">
+                        <img src="{{asset('frontend/images/cards/card-verde.png')}}" alt="image-demo">
                     </div>
                 </div>
                 <div class="swiper-slide">
@@ -19,7 +19,17 @@
                 </div>
                 <div class="swiper-slide">
                     <div class="img">
-                        <img src="{{asset('frontend/images/cards/card-vermelho.png')}}" alt="image-demo">
+                        <img src="{{asset('frontend/images/cards/card-verde.png')}}" alt="image-demo">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="img">
+                        <img src="{{asset('frontend/images/cards/card-verde.png')}}" alt="image-demo">
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="img">
+                        <img src="{{asset('frontend/images/cards/card-verde.png')}}" alt="image-demo">
                     </div>
                 </div>
             </div>
@@ -29,7 +39,7 @@
             <div class="swiper-wrapper">
                 <div class="swiper-slide" style="margin-top: -100px; padding: 0">
                     <div class="content shadow-sm">
-                        <div class="icon"><i class="icon ion-ios-star color-blue"></i></div>
+                        <div class="icon"><i class="icon ion-ios-star color-green"></i></div>
                         <div class="text">
                             <h5>Carregar</h5>
                         </div>
@@ -37,15 +47,15 @@
                 </div>
                 <div class="swiper-slide" style="margin-top: -100px; padding: 0">
                     <div class="content shadow-sm">
-                        <div class="icon"><i class="icon ion-ios-apps color-red"></i></div>
+                        <div class="icon"><i class="icon ion-ios-star color-green"></i></div>
                         <div class="text">
-                            <h5>BLoquear</h5>
+                            <h5>Bloquear</h5>
                         </div>
                     </div>
                 </div>
                 <div class="swiper-slide" style="margin-top: -100px; padding: 0">
                     <div class="content shadow-sm">
-                        <div class="icon"><i class="icon ion-ios-browsers color-yellow"></i></div>
+                        <div class="icon"><i class="icon ion-ios-star color-green"></i></div>
                         <div class="text">
                             <h5>+ Cartão</h5>
                         </div>
@@ -59,67 +69,45 @@
         <div class="list-view list-separate-two list-colored">
 			<ul>
 				<li>
-					<a href="index.html" class="list-item">
+					<a href="#" class="list-item">
 						<div class="list-media">
-							<i class="icon ion-ios-home bg-blue"></i>
+							<i class="icon ion-ios-home bg-green"></i>
 						</div>
 						<div class="list-label">
-							<div class="list-title">Home</div>
+							<div class="list-title">Métodos de pagamento</div>
 							<div class="list-after"><i class="icon ion-ios-arrow-forward"></i></div>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="features.html" class="list-item">
+					<a href="#" class="list-item">
 						<div class="list-media">
-							<i class="icon ion-ios-star bg-red"></i>
+							<i class="icon ion-ios-star bg-green"></i>
 						</div>
 						<div class="list-label">
-							<div class="list-title">Features</div>
+							<div class="list-title">Alterar identificação</div>
 							<div class="list-after"><i class="icon ion-ios-arrow-forward"></i></div>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="pages.html" class="list-item">
+					<a href="#" class="list-item">
 						<div class="list-media">
 							<i class="icon ion-ios-browsers bg-green"></i>
 						</div>
 						<div class="list-label">
-							<div class="list-title">Pages</div>
+							<div class="list-title">Definir limites</div>
 							<div class="list-after"><i class="icon ion-ios-arrow-forward"></i></div>
 						</div>
 					</a>
 				</li>
 				<li>
-					<a href="apps.html" class="list-item">
+					<a href="#" class="list-item">
 						<div class="list-media">
-							<i class="icon ion-ios-apps bg-yellow"></i>
+							<i class="icon ion-ios-apps bg-green"></i>
 						</div>
 						<div class="list-label">
-							<div class="list-title">Apps</div>
-							<div class="list-after"><i class="icon ion-ios-arrow-forward"></i></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="sign-in.html" class="list-item">
-						<div class="list-media">
-							<i class="icon ion-ios-log-in bg-purple"></i>
-						</div>
-						<div class="list-label">
-							<div class="list-title">Sign In</div>
-							<div class="list-after"><i class="icon ion-ios-arrow-forward"></i></div>
-						</div>
-					</a>
-				</li>
-				<li>
-					<a href="settings.html" class="list-item">
-						<div class="list-media">
-							<i class="icon ion-ios-settings bg-orange"></i>
-						</div>
-						<div class="list-label">
-							<div class="list-title">Settings</div>
+							<div class="list-title">Solicitar ajuda</div>
 							<div class="list-after"><i class="icon ion-ios-arrow-forward"></i></div>
 						</div>
 					</a>

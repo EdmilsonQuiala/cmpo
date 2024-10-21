@@ -26,18 +26,7 @@
 			@yield('pageTitle')
 		</div>
         <div class="right">
-            <a href="/checkout">
-                <div class="list-view">
-                    <ul>
-                        <li class="list-item">
-                            <div class="list-media">
-                                <i class="icon ion-ios-cart"></i>
-                                <span class="badge badge-danger">1</span>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </a>
+            <a href="about-us.html" class="link"><img src="{{ asset('frontend/images/cards/cmpo-logo.png') }}" alt=""></a>
 		</div>
 	</div>
 
@@ -96,7 +85,7 @@
         @include('msg.user')
 	</div>
 
-    <div class="toolbar">
+	<div class="toolbar">
 		<div class="container">
 			<ul class="toolbar-bottom toolbar-wrap">
 				<li class="toolbar-item">
@@ -105,18 +94,13 @@
 					</a>
 				</li>
 				<li class="toolbar-item">
-					<a href="/all-products" class="toolbar-link">
-						<i class="icon ion-ios-cart"></i>
+					<a href="/cards" class="toolbar-link">
+						<i class="icon ion-ios-apps"></i>
 					</a>
 				</li>
-				<li class="toolbar-item">
+                <li class="toolbar-item">
 					<a href="/profile" class="toolbar-link">
 						<i class="icon ion-ios-person"></i>
-					</a>
-				</li>
-				<li class="toolbar-item">
-					<a href="/about" class="toolbar-link">
-						<i class="icon ion-ios-apps"></i>
 					</a>
 				</li>
 			</ul>
