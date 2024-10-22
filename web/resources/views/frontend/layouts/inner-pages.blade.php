@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-	<link rel="icon" href="{{ asset('frontend/images/favicon.png') }}">
+	<link rel="icon" href="{{ asset('frontend/images/cards/cmpo-logo.png') }}">
 	<title>{{ config('app.name', 'album') }}</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900&display=swap" rel="stylesheet">
@@ -15,7 +15,6 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body>
 
