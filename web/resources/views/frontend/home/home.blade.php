@@ -4,8 +4,8 @@
 @section('pageTitle', 'Resumo')
 
 		<div class="section-title title-large">
-			<span class="overline-title">Ola! {{ Auth::user()->name }}</span>
-			<h3>Carteira movel de pagamentos online</h3>
+			<span class="overline-title">Ola! Sr. {{ explode(' ', Auth::user()->name)[0] }}</span>
+			<h3>Bem vindo a sua, carteira movel de pagamentos online</h3>
 		</div>
 
         <div class="intro-app">
@@ -29,33 +29,33 @@
 					<div class="swiper-slide">
                         <div class="content bg-lightgreen" style="padding: 10px; border-radius: 15px">
 							<div class="wrap-icon">
-								<i class="icon ion-ios-checkbox bg-green"></i>
+								<i class="icon ion-ios-pulse" style="background-color: #399953"></i>
 							</div>
 							<div class="text">
 								<h5>Euro</h5>
-                                <p>1£ = 0.89 AOA</p>
+                                <p>1 EUR = 1089 AOA</p>
 							</div>
 						</div>
 					</div>
 					<div class="swiper-slide">
 						<div class="content bg-lightgreen" style="padding: 10px; border-radius: 15px">
 							<div class="wrap-icon">
-								<i class="icon ion-ios-checkbox bg-green"></i>
+								<i class="icon ion-ios-pulse"  style="background-color: #399953"></i>
 							</div>
 							<div class="text">
-								<h5>Euro</h5>
-                                <p>1£ = 0.89 AOA</p>
+								<h5>Dolar</h5>
+                                <p>1 USD = 989 AOA</p>
 							</div>
 						</div>
 					</div>
 					<div class="swiper-slide">
 						<div class="content bg-lightgreen" style="padding: 10px; border-radius: 15px">
 							<div class="wrap-icon">
-								<i class="icon ion-ios-keypad bg-red"></i>
+								<i class="icon ion-ios-pulse"  style="background-color: #399953"></i>
 							</div>
 							<div class="text">
-								<h5>Euro</h5>
-                                <p>1£ = 0.89 AOA</p>
+								<h5>Real</h5>
+                                <p>1 BRL = 500 AOA</p>
 							</div>
 						</div>
 					</div>
@@ -125,37 +125,4 @@
         </div>
 
         <div class="separator-large"></div>
-
-        <div id="AboutApp" class="modal fade succes-modal">
-            <div class="modal-dialog modal-bottom">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="modal-icon-title">
-                            <h5>Sobre o App!</h5>
-                            <p class="text-small">O Album é uma plataforma digital desenvolvida para conectar artistas e fotógrafos com colecionadores e apreciadores de arte de todo o mundo. Seja você um artista emergente, fotógrafo profissional ou alguém apaixonado por arte, o Album oferece um espaço para compartilhar, comprar e vender obras de forma segura e simples.</p>
-                        </div>
-                        <div class="button-default">
-                            <button class="button" data-dismiss="modal" aria-label="Close">Entendido</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div id="AppTerms" class="modal fade succes-modal">
-            <div class="modal-dialog modal-bottom">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="modal-icon-title">
-                            <h5>Termos de uso!</h5>
-                            <p class="text-small">(ilustrativo) Nossa missão é promover a arte e a criatividade em escala global, proporcionando oportunidades tanto para quem cria quanto para quem busca adquirir peças exclusivas. Com o Album, você pode transformar seu talento em uma fonte de renda, enquanto colecionadores têm a chance de descobrir obras únicas e inspiradoras.".</p>
-                        </div>
-                        <div class="button-default">
-                            <button class="button" data-dismiss="modal" aria-label="Close">Entendido</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
 @endsection

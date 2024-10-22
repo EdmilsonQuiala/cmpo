@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 			@yield('pageTitle')
 		</div>
         <div class="right">
-            <a href="about-us.html" class="link"><img src="{{ asset('frontend/images/cards/cmpo-logo.png') }}" alt=""></a>
+            <a href="{{ route('profile') }}" class="link"><i class="icon ion-ios-person"></i></a>
 		</div>
 	</div>
 
@@ -86,27 +87,26 @@
 	</div>
 
 	<div class="toolbar">
-		<div class="container">
-			<ul class="toolbar-bottom toolbar-wrap">
-				<li class="toolbar-item">
-					<a href="/" class="toolbar-link toolbar-link-active">
-						<i class="icon ion-ios-home"></i>
-					</a>
-				</li>
-				<li class="toolbar-item">
-					<a href="/cards" class="toolbar-link">
-						<i class="icon ion-ios-apps"></i>
-					</a>
-				</li>
+        <div class="container">
+            <ul class="toolbar-bottom toolbar-wrap">
                 <li class="toolbar-item">
-					<a href="/profile" class="toolbar-link">
-						<i class="icon ion-ios-person"></i>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
-
+                    <a href="{{ route('home') }}" class="toolbar-link {{ Route::is('home') ? 'toolbar-link-active' : '' }}">
+                        <i class="icon ion-ios-home"></i>
+                    </a>
+                </li>
+                <li class="toolbar-item">
+                    <a href="{{ route('cards') }}" class="toolbar-link {{ Route::is('cards') ? 'toolbar-link-active' : '' }}">
+                        <i class="icon ion-ios-apps"></i>
+                    </a>
+                </li>
+                <li class="toolbar-item">
+                    <a href="{{ route('about') }}" class="toolbar-link {{ Route::is('about') ? 'toolbar-link-active' : '' }}">
+                        <i class="icon ion-ios-help"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 	<script src="{{ asset('frontend/js/jquery-3.4.1.min.js') }}"></script>
 	<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>

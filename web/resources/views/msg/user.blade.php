@@ -5,46 +5,38 @@
             <div class="modal-body">
                 {{-- Mensagem de Erro --}}
                 @if(session('error'))
-                    <div class="alert alert-danger">
-                        <i class="icon ion-ios-alert"></i>
-                        <div class="text">
-                            <p>Sistema: <span>{{ session('error') }}</span></p>
-                        </div>
-                        <div class="separator-large"></div>
+                    <i class="icon ion-ios-alert color-danger"></i>
+                    <div class="text">
+                        <p>App: <span>{{ session('error') }}</span></p>
                     </div>
+                    <div class="separator-large"></div>
                 @endif
 
                 {{-- Mensagem de Sucesso --}}
                 @if(session('success'))
-                    <div class="alert alert-success">
-                        <i class="fa fa-check-circle"></i>
-                        <div class="text">
-                            <p>Sistema: <span>{{ session('success') }}</span></p>
-                        </div>
-                        <div class="separator-large"></div>
+                    <i class="icon ion-ios-checkmark color-succes"></i>
+                    <div class="text">
+                        <p>App: <span>{{ session('success') }}</span></p>
                     </div>
+                    <div class="separator-large"></div>
                 @endif
 
                 {{-- Mensagem de Aviso --}}
                 @if(session('warning'))
-                    <div class="alert alert-warning">
-                        <i class="fa fa-exclamation-triangle"></i>
-                        <div class="text">
-                            <p>Sistema: <span>{{ session('warning') }}</span></p>
-                        </div>
-                        <div class="separator-large"></div>
+                    <i class="icon ion-android-warning color-yellow"></i>
+                    <div class="text">
+                        <p>App: <span>{{ session('warning') }}</span></p>
                     </div>
+                    <div class="separator-large"></div>
                 @endif
 
                 {{-- Mensagem de Informação --}}
                 @if(session('info'))
-                    <div class="alert alert-info">
-                        <i class="fa fa-info-circle"></i>
-                        <div class="text">
-                            <p>Sistema: <span>{{ session('info') }}</span></p>
-                        </div>
-                        <div class="separator-large"></div>
+                    <i class="icon ion-ios-information color-blue"></i>
+                    <div class="text">
+                        <p>App: <span>{{ session('info') }}</span></p>
                     </div>
+                    <div class="separator-large"></div>
                 @endif
             </div>
         </div>

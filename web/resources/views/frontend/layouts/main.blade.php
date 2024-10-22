@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/swiper.min.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/magnific-popup.css') }}">
     <link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 </head>
 <body>
 
@@ -26,7 +27,7 @@
 			@yield('pageTitle')
 		</div>
         <div class="right">
-            <a href="about-us.html" class="link"><img src="{{ asset('frontend/images/cards/cmpo-logo.png') }}" alt=""></a>
+            <a href="{{ route('profile') }}" class="link"><i class="icon ion-ios-person"></i></a>
 		</div>
 	</div>
 
@@ -85,27 +86,65 @@
         @include('msg.user')
 	</div>
 
+    <div id="AboutApp" class="modal fade succes-modal">
+        <div class="modal-dialog modal-bottom">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-icon-title">
+                        <h5>Sobre o App!</h5>
+                        <p class="text-small">Com a CMPO, faça pagamentos, transfira dinheiro e gerencie suas finanças de forma simples e segura, tudo em um só lugar.</p>
+                    </div>
+                    <div class="button-default">
+                        <button class="button" data-dismiss="modal" aria-label="Close">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="AppTerms" class="modal fade succes-modal">
+        <div class="modal-dialog modal-bottom">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <div class="modal-icon-title text-left">
+                        <h5>Termos de uso!</h5>
+                        <p class="text-small">Ao usar o aplicativo CMPO, você concorda com todos os termos aqui descritos. Leia com atenção antes de utilizar nossos serviços. <br></p>
+                        <ul>
+                            <li><strong>Uso do Aplicativo:</strong> Você deve utilizar o CMPO de acordo com as leis aplicáveis. A CMPO reserva-se o direito de suspender ou encerrar contas que violem nossos termos ou apresentem atividades suspeitas.<br></li>
+                            <li><strong>Segurança da Conta:</strong> A segurança da sua conta é nossa prioridade. No entanto, você é responsável por manter suas credenciais de acesso seguras. Qualquer atividade realizada em sua conta é de sua responsabilidade.<br></li>
+                            <li><strong>Limitações de Responsabilidade:</strong> A CMPO não será responsável por perdas financeiras decorrentes de uso indevido, atrasos ou interrupções de serviço, salvo em casos de negligência intencional de nossa parte.<br></li>
+                            <li><strong>Alterações nos Termos:</strong> Podemos atualizar estes Termos de Uso a qualquer momento. É sua responsabilidade verificar periodicamente por atualizações.<br></li>
+                        </ul>
+                    </div>
+                    <div class="button-default">
+                        <button class="button" data-dismiss="modal" aria-label="Close">Entendido</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 	<div class="toolbar">
-		<div class="container">
-			<ul class="toolbar-bottom toolbar-wrap">
-				<li class="toolbar-item">
-					<a href="/" class="toolbar-link toolbar-link-active">
-						<i class="icon ion-ios-home"></i>
-					</a>
-				</li>
-				<li class="toolbar-item">
-					<a href="/cards" class="toolbar-link">
-						<i class="icon ion-ios-apps"></i>
-					</a>
-				</li>
+        <div class="container">
+            <ul class="toolbar-bottom toolbar-wrap">
                 <li class="toolbar-item">
-					<a href="/profile" class="toolbar-link">
-						<i class="icon ion-ios-person"></i>
-					</a>
-				</li>
-			</ul>
-		</div>
-	</div>
+                    <a href="{{ route('home') }}" class="toolbar-link {{ Route::is('home') ? 'toolbar-link-active' : '' }}">
+                        <i class="icon ion-ios-home"></i>
+                    </a>
+                </li>
+                <li class="toolbar-item">
+                    <a href="{{ route('cards') }}" class="toolbar-link {{ Route::is('cards') ? 'toolbar-link-active' : '' }}">
+                        <i class="icon ion-ios-apps"></i>
+                    </a>
+                </li>
+                <li class="toolbar-item">
+                    <a href="{{ route('about') }}" class="toolbar-link {{ Route::is('about') ? 'toolbar-link-active' : '' }}">
+                        <i class="icon ion-ios-help-outline"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 	<script src="{{ asset('frontend/js/jquery-3.4.1.min.js') }}"></script>
 	<script src="{{ asset('frontend/js/bootstrap.bundle.min.js') }}"></script>
