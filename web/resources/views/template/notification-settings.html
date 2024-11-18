@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:"
+    />
+
+    <link rel="icon" href="images/favicon.png" />
+    <title>Evone - eCommerce Mobile Template</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/framework7.bundle.css" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="view view-main view-init ios-edges" data-url="/">
+        <div class="page">
+          <div class="navbar navbar-page">
+            <div class="navbar-inner sliding">
+              <div class="left">
+                <a href="#" class="link back">
+                  <i class="fas fa-arrow-left"></i>
+                </a>
+              </div>
+              <div class="title">Notification Settings</div>
+              <div class="right">
+                <a href="#" @click="showToastBottom">
+                  <i class="fas fa-check confirm-changes"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="page-content">
+            <!-- notification settings -->
+            <div class="notification-settings segments-bottom">
+              <div class="list">
+                <ul>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Comment Notifications</div>
+                        <div class="item-after">
+                          <label class="toggle toggle-init color-red">
+                            <input type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">
+                          Automatic Application Updates
+                        </div>
+                        <div class="item-after">
+                          <label class="toggle toggle-init color-red">
+                            <input type="checkbox" />
+                            <span class="toggle-icon"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Vibrate for Notifications</div>
+                        <div class="item-after">
+                          <label class="toggle toggle-init color-red">
+                            <input type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Recommended Product</div>
+                        <div class="item-after">
+                          <label class="toggle toggle-init color-red">
+                            <input type="checkbox" checked />
+                            <span class="toggle-icon"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">Aplication Fiture Upadte</div>
+                        <div class="item-after">
+                          <label class="toggle toggle-init color-red">
+                            <input type="checkbox" />
+                            <span class="toggle-icon"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="item-content">
+                      <div class="item-inner">
+                        <div class="item-title">
+                          All Notifications enter to Email
+                        </div>
+                        <div class="item-after">
+                          <label class="toggle toggle-init color-red">
+                            <input type="checkbox" />
+                            <span class="toggle-icon"></span>
+                          </label>
+                        </div>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <!-- end notification settings -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/framework7.bundle.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

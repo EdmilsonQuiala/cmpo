@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:"
+    />
+
+    <link rel="icon" href="images/favicon.png" />
+    <title>Evone - eCommerce Mobile Template</title>
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/framework7.bundle.css" />
+    <link rel="stylesheet" href="css/font-awesome.css" />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body>
+    <div id="app">
+      <div class="view view-main view-init ios-edges" data-url="/">
+        <div class="page">
+          <div class="navbar navbar-page">
+            <div class="navbar-inner sliding">
+              <div class="left">
+                <a href="#" class="link back">
+                  <i class="fas fa-arrow-left"></i>
+                </a>
+              </div>
+              <div class="title">Contact Seller</div>
+              <div class="right"></div>
+            </div>
+          </div>
+          <div class="page-content">
+            <!-- contact seller -->
+            <div class="password-settings segments">
+              <div class="container">
+                <form class="list">
+                  <ul>
+                    <li class="item-content item-input">
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <input type="text" placeholder="Name" />
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content item-input">
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <input type="email" placeholder="Email" />
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content item-input">
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <input type="text" placeholder="Subject" />
+                        </div>
+                      </div>
+                    </li>
+                    <li class="item-content item-input">
+                      <div class="item-inner">
+                        <div class="item-input-wrap">
+                          <textarea
+                            cols="30"
+                            rows="10"
+                            placeholder="Message"
+                          ></textarea>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <div class="content-button">
+                    <a href="#" class="button primary-button"
+                      ><i class="fas fa-paper-plane"></i>Send</a
+                    >
+                  </div>
+                </form>
+              </div>
+            </div>
+            <!-- end contact seller -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="js/framework7.bundle.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>
