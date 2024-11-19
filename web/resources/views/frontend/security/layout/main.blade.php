@@ -13,35 +13,12 @@
 	<link rel="stylesheet" href="{{ asset('frontend/css/framework7.bundle.css') }}">
 	<link rel="stylesheet" href="{{ asset('frontend/css/font-awesome.css') }}">
 	<link rel="stylesheet" href="{{ asset('frontend/css/style.css') }}">
-
 </head>
 <body>
 
 	<div id="app">
-
 		<div class="view view-main view-init ios-edges" data-url="/">
 			<div class="page page-home page-with-subnavbar">
-				<div class="toolbar tabbar tabbar-labels toolbar-bottom">
-					<div class="toolbar-inner">
-						<a href="#tab-home" class="tab-link tab-link-active">
-							<i class="fas fa-home"></i>
-							<span class="tabbar-label">Home</span>
-						</a>
-						<a href="##tab-brand" class="tab-link">
-							<i class="fas fa-medal"></i>
-							<span class="tabbar-label">Official Brand</span>
-						</a>
-						<a href="##tab-cart" class="tab-link">
-							<i class="fas fa-shopping-cart"></i>
-							<span class="tabbar-label">Cart</span>
-						</a>
-						<a href="##tab-account" class="tab-link">
-							<i class="fas fa-user"></i>
-							<span class="tabbar-label">Account</span>
-						</a>
-					</div>
-				</div>
-
                 @yield('content')
 
                 @include('msg.system')

@@ -8,6 +8,6 @@ class MainPagesController
 {
     public function home()
     {
-        return view('frontend.home.home');
+        return view('frontend.home.main');
     }
 }
