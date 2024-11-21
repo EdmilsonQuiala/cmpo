@@ -2,37 +2,42 @@
 
 namespace App\Models;
 
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Notifications\VerifyEmailNotification;
-use App\Notifications\ResetPasswordNotification;
 
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use Notifiable;
-    use HasFactory;
 
     protected $fillable = [
-        'name', 'phone', 'email', 'password', 'image',
+        'name',
+        'email',
+        'phone',
+        'address',
+        'document_number',
+        'image',
+        'role',
+        'status',
+        'email_verified_at',
+        'remember_token',
+        'google_id',
+        'facebook_id',
+        'password'
     ];
 
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
 
-    public function sendEmailVerificationNotification()
+    public function setPasswordAttribute($password)
     {
-        $this->notify(new VerifyEmailNotification());
-    }
-
-    public function sendPasswordResetNotification($token)
-    {
-        $this->notify(new ResetPasswordNotification($token));
+        $this->attributes['password'] = bcrypt($password);
     }
 }
+

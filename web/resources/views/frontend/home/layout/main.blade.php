@@ -7,7 +7,7 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="default">
 	<meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
 
-	<link rel="icon" href="{{ asset('frontend/images/favicon.png') }}">
+	<link rel="icon" href="{{ asset('frontend/images/afercon/logo/icon.png') }}">
 	<title>Afercon Pay</title>
 	<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,500,500i,700,900&display=swap" rel="stylesheet">
 	<link rel="stylesheet" href="{{ asset('frontend/css/framework7.bundle.css') }}">
