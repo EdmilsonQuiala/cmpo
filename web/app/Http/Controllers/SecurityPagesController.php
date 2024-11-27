@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Notifications\WelcomeNotification;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class SecurityPagesController
 {
@@ -21,40 +23,59 @@ class SecurityPagesController
     }
     public function signUp(Request $request)
     {
-        if ($request->isMethod('get')) {
-
-            $tab = 'tab-sign-up';
-            return view('frontend.security.main', compact('tab'));
-        }
-
+        // Validação dos campos
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'phone' => 'nullable|string|max:20',
-            'password' => 'required|string|confirmed|min:8',
+            'phone' => 'required|numeric',
+            'email' => 'required|email|unique:users,email',
+            'password' => 'required|min:6|confirmed', // Confirmed exige password_confirmation
         ]);
 
         if ($validator->fails()) {
             return response()->json([
                 'status' => 'error',
-                'errors' => $validator->errors()
+                'errors' => $validator->errors(),
             ], 422);
         }
 
-        $user = User::create($request->all());
+        // Criação do usuário
+        $user = User::create([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+        ]);
 
-        // Enviar notificação de boas-vindas
         $user->notify(new WelcomeNotification());
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Conta criada com sucesso!',
-        ], 200);
+            'message' => 'Usuário Registado, Acesse sua conta!',
+        ]);
     }
 
-    public function signIn()
+    public function signIn(Request $request)
     {
-        $tab = 'tab-sign-in';
-        return view('frontend.home.main', compact('tab'));
+        // Validação dos campos
+        $credentials = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
+
+        // Tentativa de autenticação
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Login efetuado com sucesso!',
+            ]);
+        }
+
+        return response()->json([
+            'status' => 'error',
+            'errors' => ['login' => ['Credenciais inválidas.']],
+        ], 422);
     }
+
 }

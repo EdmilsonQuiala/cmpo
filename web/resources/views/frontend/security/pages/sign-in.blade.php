@@ -11,27 +11,149 @@
             <div style="display: flex; justify-content: center; padding-bottom: 20px">
                 <img src="{{ asset('frontend/images/afercon/logo/logo.png') }}" alt="" class="img-logo" width="40%">
             </div>
-            <form class="list" action="{{ route('signIn') }}">
+            <form class="list" id="loginForm">
                 <ul>
+                    <!-- Campo de E-mail -->
                     <li class="item-content item-input">
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="email" placeholder="Seu email" name="email_sign_in" id="email_sign_in" />
+                                <input
+                                    type="email"
+                                    placeholder="Seu email"
+                                    name="email_sign_in"
+                                    id="email_sign_in"
+                                    required
+                                />
                             </div>
                         </div>
                     </li>
+
+                    <!-- Campo de Senha -->
                     <li class="item-content item-input">
                         <div class="item-inner">
                             <div class="item-input-wrap">
-                                <input type="password" placeholder="Sua Senha" name="password_sign_in" id="password_sign_in" />
+                                <input
+                                    type="password"
+                                    placeholder="Sua Senha"
+                                    name="password_sign_in"
+                                    id="password_sign_in"
+                                    required
+                                />
                             </div>
                         </div>
                     </li>
                 </ul>
+
+                <!-- Botão de Login -->
                 <div class="content-button">
-                    <button type="submit" class="button primary-button">Aceder conta</button>
+                    <button
+                        type="button"
+                        id="loginButton"
+                        class="button primary-button"
+                    >
+                        Aceder conta
+                    </button>
                 </div>
             </form>
+
+            <!-- Containers para mensagens -->
+            <div id="messageContainer"></div>
+            <div id="errorContainer"></div>
+
+            <script>
+                document.getElementById('loginButton').addEventListener('click', function () {
+                const email = document.getElementById('email_sign_in').value.trim();
+                const password = document.getElementById('password_sign_in').value.trim();
+                const messageContainer = document.getElementById('messageContainer');
+                const errorContainer = document.getElementById('errorContainer');
+
+                // Limpar mensagens anteriores
+                messageContainer.innerHTML = '';
+                errorContainer.innerHTML = '';
+
+                // Validação local básica
+                if (!email || !password) {
+                    errorContainer.innerHTML = `
+                        <div class="list media-list">
+                            <ul>
+                                <li>
+                                    <div class="item-inner">
+                                        <div class="item-title">Por favor, preencha todos os campos.</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    `;
+                    return;
+                }
+
+                // Exibir mensagem de carregamento
+                messageContainer.innerHTML = `
+                    <div class="list media-list">
+                        <ul>
+                            <li>
+                                <div class="item-inner">
+                                    <div class="item-title">Aguarde...</div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                `;
+
+                // Enviar os dados para o servidor
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('password', password);
+
+                fetch("{{ route('signIn') }}", {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                    },
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        return response.json().then(data => {
+                            throw data;
+                        });
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    messageContainer.innerHTML = `
+                        <div class="list media-list">
+                            <ul>
+                                <li>
+                                    <div class="item-inner">
+                                        <div class="item-title">${data.message}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    `;
+                    // Redirecionar após sucesso
+                    setTimeout(() => {
+                        window.location.href = "{{ route('home') }}";
+                    }, 2000);
+                })
+                .catch(error => {
+                    const errorMessages = Object.values(error.errors || {}).map(err => `
+                        <div class="list media-list">
+                            <ul>
+                                <li>
+                                    <div class="item-inner">
+                                        <div class="item-title">${err.join('<br>')}</div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    `);
+                    errorContainer.innerHTML = errorMessages.join('');
+                });
+            });
+
+            </script>
 
             <div class="divider-space-content"></div>
 
