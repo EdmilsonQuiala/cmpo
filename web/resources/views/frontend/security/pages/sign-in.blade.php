@@ -48,7 +48,7 @@
                 <div class="content-button">
                     <button
                         type="button"
-                        id="loginButton"
+                        id="sign_in"
                         class="button primary-button"
                     >
                         Aceder conta
@@ -57,105 +57,136 @@
             </form>
 
             <!-- Containers para mensagens -->
-            <div id="messageContainer"></div>
-            <div id="errorContainer"></div>
+            <div id="messageContainerSignIn"></div>
+            <div id="errorContainerSignIn"></div>
 
             <script>
-                document.getElementById('loginButton').addEventListener('click', function () {
-                const email = document.getElementById('email_sign_in').value.trim();
-                const password = document.getElementById('password_sign_in').value.trim();
-                const messageContainer = document.getElementById('messageContainer');
-                const errorContainer = document.getElementById('errorContainer');
+                document.getElementById('sign_in').addEventListener('click', function () {
+                    const email = document.getElementById('email_sign_in').value.trim();
+                    const password = document.getElementById('password_sign_in').value.trim();
+                    const messageContainerSignIn = document.getElementById('messageContainerSignIn');
+                    const errorContainerSignIn = document.getElementById('errorContainerSignIn');
 
-                // Limpar mensagens anteriores
-                messageContainer.innerHTML = '';
-                errorContainer.innerHTML = '';
+                    // Limpar mensagens anteriores
+                    messageContainerSignIn.innerHTML = '';
+                    errorContainerSignIn.innerHTML = '';
 
-                // Validação local básica
-                if (!email || !password) {
-                    errorContainer.innerHTML = `
-                        <div class="list media-list">
-                            <ul>
-                                <li>
-                                    <div class="item-inner">
-                                        <div class="item-title">Por favor, preencha todos os campos.</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    `;
-                    return;
-                }
-
-                // Exibir mensagem de carregamento
-                messageContainer.innerHTML = `
-                    <div class="list media-list">
-                        <ul>
-                            <li>
-                                <div class="item-inner">
-                                    <div class="item-title">Aguarde...</div>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                `;
-
-                // Enviar os dados para o servidor
-                const formData = new FormData();
-                formData.append('email', email);
-                formData.append('password', password);
-
-                fetch("{{ route('signIn') }}", {
-                    method: 'POST',
-                    body: formData,
-                    headers: {
-                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                    },
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        return response.json().then(data => {
-                            throw data;
-                        });
+                    // Validação local básica
+                    if (!email || !password) {
+                        errorContainerSignIn.innerHTML = `
+                            <div class="list media-list">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-media"><i class="fas fa-info-circle" style="color: #39673d"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">Por favor, preencha todos os campos.</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        `;
+                        return;
                     }
-                    return response.json();
-                })
-                .then(data => {
-                    messageContainer.innerHTML = `
+
+                    // Exibir mensagem de carregamento
+                    messageContainerSignIn.innerHTML = `
                         <div class="list media-list">
                             <ul>
                                 <li>
-                                    <div class="item-inner">
-                                        <div class="item-title">${data.message}</div>
-                                    </div>
+                                    <a href="#" class="item-link item-content">
+                                        <div class="item-media"><i class="fas fa-info-circle" style="color: #39673d"></i></div>
+                                        <div class="item-inner">
+                                            <div class="item-title-row">
+                                                <div class="item-title">Aguarde...</div>
+                                            </div>
+                                        </div>
+                                    </a>
                                 </li>
                             </ul>
                         </div>
                     `;
-                    // Redirecionar após sucesso
-                    setTimeout(() => {
-                        window.location.href = "{{ route('home') }}";
-                    }, 2000);
-                })
-                .catch(error => {
-                    const errorMessages = Object.values(error.errors || {}).map(err => `
-                        <div class="list media-list">
-                            <ul>
-                                <li>
-                                    <div class="item-inner">
-                                        <div class="item-title">${err.join('<br>')}</div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    `);
-                    errorContainer.innerHTML = errorMessages.join('');
+
+                    // Enviar os dados para o servidor
+                    const formData = new FormData();
+                    formData.append('email', email);
+                    formData.append('password', password);
+
+                    const signInButton = document.getElementById('sign_in');
+                    signInButton.disabled = true;
+                    signInButton.style.backgroundColor = '#7a7a7a';
+                    signInButton.innerText = 'Aguarde...';
+
+                    fetch("{{ route('signIn') }}", {
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                        },
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            return response.json().then(data => {
+                                throw data;
+                            });
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        messageContainerSignIn.innerHTML = `
+                            <div class="list media-list">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-media"><i class="fas fa-info-circle" style="color: #39673d"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">${data.message}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        `;
+
+                        // Redirecionar após sucesso
+                        setTimeout(() => {
+                            window.location.href = "{{ route('home') }}";
+                        }, 2000);
+                    })
+                    .catch(error => {
+                        const errorMessages = Object.values(error.errors || {}).map(err => `
+                            <div class="list media-list">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-media"><i class="fas fa-info-circle" style="color: #39673d"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">${err.join('<br>')}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        `);
+                        errorContainerSignIn.innerHTML = errorMessages.join('');
+
+
+                        signInButton.disabled = false;
+                        signInButton.style.backgroundColor = '#39673d';
+                        signInButton.innerText = 'Tentar novamente';
+                    });
                 });
-            });
 
             </script>
 
-            <div class="divider-space-content"></div>
+{{--             <div class="divider-space-content"></div>
 
             <div class="wrap-sign-up-with">
                 <div class="title">
@@ -180,7 +211,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="divider-space-content"></div>
 

@@ -14,8 +14,6 @@
                 <img src="{{ asset('frontend/images/afercon/logo/logo.png') }}" alt="" class="img-logo"
                     width="40%">
             </div>
-            <div id="messageContainer"></div>
-            <div id="errorContainer"></div>
 
             <form class="list">
                 <ul>
@@ -60,10 +58,13 @@
                     </li>
                 </ul>
                 <div class="content-button">
-                    <button type="button" name="sign_up" id="sign_up" class="button primary-button">Criar
-                        conta</button>
+                    <button type="button" name="sign_up" id="sign_up" class="button primary-button">Criar conta</button>
                 </div>
             </form>
+
+            <div id="messageContainerSignUp"></div>
+            <div id="errorContainerSignUp"></div>
+
             <script>
                 document.getElementById('sign_up').addEventListener('click', function() {
                     const password = document.getElementById('password').value;
@@ -71,7 +72,7 @@
 
                     // Validação local de senha
                     if (password !== repeatPassword) {
-                        const messageContainer = document.getElementById('messageContainer');
+                        const messageContainerSignUp = document.getElementById('messageContainerSignUp');
                             const successMessage = `
                                 <div class="list media-list">
                                     <ul>
@@ -88,7 +89,7 @@
                                     </ul>
                                 </div>
                             `;
-                        messageContainer.innerHTML = successMessage;
+                        messageContainerSignUp.innerHTML = successMessage;
                         return;
                     }
 
@@ -101,6 +102,7 @@
 
                     const signUpButton = document.getElementById('sign_up');
                     signUpButton.disabled = true;
+                    signUpButton.style.backgroundColor = '#7a7a7a';
                     signUpButton.innerText = 'Aguarde...';
 
                     fetch("{{ route('signUp') }}", {
@@ -119,7 +121,7 @@
                             return response.json();
                         })
                         .then(data => {
-                            const messageContainer = document.getElementById('messageContainer');
+                            const messageContainerSignUp = document.getElementById('messageContainerSignUp');
                             const successMessage = `
                                 <div class="list media-list">
                                     <ul>
@@ -136,10 +138,10 @@
                                     </ul>
                                 </div>
                             `;
-                            messageContainer.innerHTML = successMessage;
+                            messageContainerSignUp.innerHTML = successMessage;
                         })
                         .catch(error => {
-                            const errorContainer = document.getElementById('errorContainer');
+                            const errorContainerSignUp = document.getElementById('errorContainerSignUp');
                             const errorMessages = Object.values(error.errors).map(err => `
                                 <div class="list media-list">
                                     <ul>
@@ -156,12 +158,12 @@
                                     </ul>
                                 </div>
                             `);
-                            errorContainer.innerHTML = errorMessages.join('');
+                            errorContainerSignUp.innerHTML = errorMessages.join('');
                         });
                 });
             </script>
 
-            <div class="divider-space-content"></div>
+{{--             <div class="divider-space-content"></div>
 
             <div class="wrap-sign-up-with">
                 <div class="title">
@@ -186,7 +188,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <div class="divider-space-content"></div>
 
