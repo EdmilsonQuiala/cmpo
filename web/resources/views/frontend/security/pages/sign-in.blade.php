@@ -13,6 +13,8 @@
             </div>
             <form class="list" id="loginForm">
                 <ul>
+                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                    
                     <!-- Campo de E-mail -->
                     <li class="item-content item-input">
                         <div class="item-inner">

@@ -8,6 +8,7 @@ use App\Notifications\WelcomeNotification;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class SecurityPagesController
 {
@@ -43,7 +44,7 @@ class SecurityPagesController
             'name' => $request->name,
             'phone' => $request->phone,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => $request->password,
         ]);
 
         $user->notify(new WelcomeNotification());
@@ -56,15 +57,22 @@ class SecurityPagesController
 
     public function signIn(Request $request)
     {
+        // Registrar os dados recebidos
+        Log::info('Dados recebidos para login:', $request->all());
+
         // Validação dos campos
         $credentials = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
         ]);
 
+        Log::info('Credenciais validadas:', $credentials);
+
         // Tentativa de autenticação
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
+
+            Log::info('Usuário autenticado:', ['user_id' => Auth::id()]);
 
             return response()->json([
                 'status' => 'success',
@@ -72,10 +80,13 @@ class SecurityPagesController
             ]);
         }
 
+        Log::warning('Falha na autenticação', ['credentials' => $credentials]);
+
         return response()->json([
             'status' => 'error',
             'errors' => ['login' => ['Credenciais inválidas.']],
         ], 422);
     }
+
 
 }

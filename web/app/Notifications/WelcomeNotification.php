@@ -19,7 +19,7 @@ class WelcomeNotification extends Notification
             ->greeting('Olá ' . $notifiable->name . '!')
             ->line('Sua conta foi criada com sucesso.')
             ->line('Estamos felizes por tê-lo conosco.')
-            ->action('Acesse o Sistema', url('/sign-in'))
+            // ->action('Acesse o Sistema', url('/sign-in'))
             ->line('Obrigado por se inscrever!');
     }
 }

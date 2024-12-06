@@ -36,18 +36,49 @@
         <div class="container">
             <div class="container segments">
                 <div class="info-balance content-shadow">
+                    <h5 style="text-align: center; padding: 20px 0 20px 0">Olá {{ $user->name }}!</h5>
                     <div class="row">
                         <div class="col-50">
                             <div class="content-text">
                                 <p>Saldo Geral</p>
-                                <h5>$310.00</h5>
+                                <h5>AOA <span class="hide_money">310.00</span></h5>
                             </div>
                         </div>
                         <div class="col-50">
                             <div class="content-button">
-                                <a href="#" class="button primary-button"><i class="fas fa-eye"></i>Ocultar</a>
+                                <button id="toggleHideMoney" class="button primary-button">
+                                    <i class="fas fa-eye"></i> Ocultar
+                                </button>
                             </div>
                         </div>
+
+                        <script>
+                            document.getElementById('toggleHideMoney').addEventListener('click', function () {
+                                // Substituir o valor de todos os elementos com a classe "hide_money" por "***"
+                                document.querySelectorAll('.hide_money').forEach(span => {
+                                    span.textContent = '***';
+                                });
+
+                                // Enviar solicitação para salvar a preferência
+                                fetch("{{ route('toggleHideMoney') }}", {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                    },
+                                    body: JSON.stringify({ hide_money: true })
+                                }).then(response => response.json())
+                                  .then(data => {
+                                      if (data.status === 'success') {
+                                          console.log('Preferência salva com sucesso!');
+                                      } else {
+                                          console.error('Erro ao salvar preferência:', data.message);
+                                      }
+                                  }).catch(error => {
+                                      console.error('Erro:', error);
+                                  });
+                            });
+                        </script>
                     </div>
                 </div>
             </div>
