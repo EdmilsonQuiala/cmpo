@@ -18,7 +18,7 @@ class PreferenceController extends Controller
             ['hide_money' => 'no']
         );
 
-        // Atualizar o campo `hide_money`
+        // Atualizar o campo `hide_money` com base na solicitação
         $preference->hide_money = $request->hide_money ? 'yes' : 'no';
         $preference->save();
 

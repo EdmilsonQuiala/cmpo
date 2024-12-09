@@ -41,7 +41,7 @@
                         <div class="col-50">
                             <div class="content-text">
                                 <p>Saldo Geral</p>
-                                <h5>AOA <span class="hide_money">310.00</span></h5>
+                                <h5>AOA <span class="hide_money">{{ number_format($balance, 2, ',', '.') }}</span></h5>
                             </div>
                         </div>
                         <div class="col-50">
@@ -51,41 +51,66 @@
                                 </button>
                             </div>
                         </div>
-
-                        <script>
-                            document.getElementById('toggleHideMoney').addEventListener('click', function () {
-                                // Substituir o valor de todos os elementos com a classe "hide_money" por "***"
-                                document.querySelectorAll('.hide_money').forEach(span => {
-                                    span.textContent = '***';
-                                });
-
-                                // Enviar solicitação para salvar a preferência
-                                fetch("{{ route('toggleHideMoney') }}", {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/json',
-                                        'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                    },
-                                    body: JSON.stringify({ hide_money: true })
-                                }).then(response => response.json())
-                                  .then(data => {
-                                      if (data.status === 'success') {
-                                          console.log('Preferência salva com sucesso!');
-                                      } else {
-                                          console.error('Erro ao salvar preferência:', data.message);
-                                      }
-                                  }).catch(error => {
-                                      console.error('Erro:', error);
-                                  });
-                            });
-                        </script>
                     </div>
                 </div>
+
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        const toggleButton = document.getElementById('toggleHideMoney');
+                        const moneyElements = document.querySelectorAll('.hide_money');
+                        let isHidden = {{ $preference && $preference->hide_money === 'yes' ? 'true' : 'false' }};
+
+                        // Função para atualizar o estado da interface
+                        function updateInterface() {
+                            if (isHidden) {
+                                moneyElements.forEach(element => {
+                                    element.setAttribute('data-original-value', element.textContent);
+                                    element.textContent = '***';
+                                });
+                                toggleButton.innerHTML = '<i class="fas fa-eye-slash"></i> Mostrar';
+                            } else {
+                                moneyElements.forEach(element => {
+                                    element.textContent = element.getAttribute('data-original-value') || '{{ number_format($balance, 2, ',', '.') }}';
+                                });
+                                toggleButton.innerHTML = '<i class="fas fa-eye"></i> Ocultar';
+                            }
+                        }
+
+                        // Inicializar interface com base na preferência salva
+                        updateInterface();
+
+                        toggleButton.addEventListener('click', function () {
+                            isHidden = !isHidden;
+                            updateInterface();
+
+                            // Enviar solicitação para salvar a preferência
+                            fetch("{{ route('toggleHideMoney') }}", {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                },
+                                body: JSON.stringify({ hide_money: isHidden })
+                            })
+                            .then(response => response.json())
+                            .then(data => {
+                                if (data.status === 'success') {
+                                    console.log('Preferência salva com sucesso!');
+                                } else {
+                                    console.error('Erro ao salvar preferência:', data.message);
+                                }
+                            })
+                            .catch(error => {
+                                console.error('Erro:', error);
+                            });
+                        });
+                    });
+                </script>
             </div>
             <div class="row">
                 <div class="col-30">
                     <div class="content">
-                        <a href="/all-categories/">
+                        <a href="{{route('AddMoney')}}">
                             <div class="icon">
                                 <i class="fa fa-plus-square"></i>
                             </div>
