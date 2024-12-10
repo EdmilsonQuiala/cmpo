@@ -110,12 +110,20 @@
             <div class="row">
                 <div class="col-30">
                     <div class="content">
-                        <a href="{{route('AddMoney')}}">
+                        <a id="redirectToAddMoney">
                             <div class="icon">
                                 <i class="fa fa-plus-square"></i>
                             </div>
                             <span>Adicionar</span>
                         </a>
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const redirectToAddMoney = document.getElementById('redirectToAddMoney');
+                                redirectToAddMoney.addEventListener('click', function () {
+                                    window.location.href = "{{ route('AddMoney') }}";
+                                });
+                            });
+                        </script>
                     </div>
                 </div>
                 <div class="col-30">
@@ -181,7 +189,7 @@
                 <div class="col-50">
                     <div class="content-text">
                         <p>Pagamento de internet</p>
-                        <h5>$10.00</h5>
+                        <h5>AOA <span class="hide_money">{{ number_format('100', 2, ',', '.') }}</span></h5>
                     </div>
                 </div>
                 <div class="col-50">
@@ -198,7 +206,7 @@
                 <div class="col-50">
                     <div class="content-text">
                         <p>Pagamento de internet</p>
-                        <h5>$10.00</h5>
+                        <h5>AOA <span class="hide_money">{{ number_format('100', 2, ',', '.') }}</span></h5>
                     </div>
                 </div>
                 <div class="col-50">
@@ -215,7 +223,7 @@
                 <div class="col-50">
                     <div class="content-text">
                         <p>Pagamento de internet</p>
-                        <h5>$10.00</h5>
+                        <h5>AOA <span class="hide_money">{{ number_format('100', 2, ',', '.') }}</span></h5>
                     </div>
                 </div>
                 <div class="col-50">

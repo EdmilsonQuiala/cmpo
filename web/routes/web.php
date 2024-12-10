@@ -31,6 +31,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['auth'])->group(function () {
     Route::get('/wallet', [WalletController::class, 'wallet'])->name('wallet');
     Route::get('/wallet/add-money', [WalletController::class, 'AddMoney'])->name('AddMoney');
+    Route::post('/wallet/add-money-process', [WalletController::class, 'AddMoneyProcess'])->name('AddMoneyProcess');
 });
 
 
