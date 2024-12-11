@@ -95,7 +95,7 @@
             </script>
         </div>
         <div class="account-menu">
-            <form class="list">
+            <form class="list" id="addMoneyForm">
                 <ul>
                     <li class="item-content item-input">
                         <div class="item-inner">
@@ -123,10 +123,10 @@
                             <div class="item-input-wrap">
                                 <select name="coin" id="coin">
                                     <option value="">Selecione a moeda</option>
-                                    <option value="USD">Dolar Americano</option>
+                                    <option value="USD">Dólar Americano</option>
                                     <option value="BRL">Real Brasileiro</option>
                                     <option value="EUR">Euro</option>
-                                    <option value="GBP">Libra Eststerlina</option>
+                                    <option value="GBP">Libra Esterlina</option>
                                     <option value="AOA">Kwanza</option>
                                 </select>
                             </div>
@@ -134,80 +134,47 @@
                     </li>
                 </ul>
                 <div class="content-button">
-                    <button type="submit" class="button primary-button" name="btn_solicitar" id="btn_solicitar">Solicitar</button>
+                    <button type="button" class="button primary-button" name="btn_solicitar" id="btn_solicitar">Solicitar</button>
                 </div>
             </form>
+
+            <div id="messageContainer"></div>
+            <div id="errorContainer"></div>
 
             <script>
                 document.getElementById('btn_solicitar').addEventListener('click', function() {
                     const formData = new FormData();
-                    formData.append('name', document.getElementById('name').value);
-                    formData.append('email', document.getElementById('email').value);
                     formData.append('qtd', document.getElementById('qtd').value);
                     formData.append('coin', document.getElementById('coin').value);
 
-                    const signUpButton = document.getElementById('btn_solicitar');
-                    signUpButton.disabled = true;
-                    signUpButton.style.backgroundColor = '#7a7a7a';
-                    signUpButton.innerText = 'Aguarde...';
+                    const btnSolicitar = document.getElementById('btn_solicitar');
+                    btnSolicitar.disabled = true;
+                    btnSolicitar.style.backgroundColor = '#7a7a7a';
+                    btnSolicitar.innerText = 'Aguarde...';
 
                     fetch("{{ route('AddMoneyProcess') }}", {
-                            method: 'POST',
-                            body: formData,
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                            }
-                        })
-                        .then(response => {
-                            if (!response.ok) {
-                                return response.json().then(data => {
-                                    throw data;
-                                });
-                            }
-                            return response.json();
-                        })
-                        .then(data => {
-                            const messageContainerSignUp = document.getElementById('messageContainerSignUp');
-                            const successMessage = `
-                                <div class="list media-list">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="item-link item-content">
-                                                <div class="item-media"><i class="fas fa-check-circle" style="color: #39673d"></i></div>
-                                                <div class="item-inner">
-                                                    <div class="item-title-row">
-                                                        <div class="item-title">${data.message}</div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            `;
-                            messageContainerSignUp.innerHTML = successMessage;
-                        })
-                        .catch(error => {
-                            const errorContainerSignUp = document.getElementById('errorContainerSignUp');
-                            const errorMessages = Object.values(error.errors).map(err => `
-                                <div class="list media-list">
-                                    <ul>
-                                        <li>
-                                            <a href="#" class="item-link item-content">
-                                                <div class="item-media"><i class="fas fa-exclamation-triangle" style="color: #39673d"></i></div>
-                                                <div class="item-inner">
-                                                    <div class="item-title-row">
-                                                        <div class="item-title">${err.join('<br>')} </div>
-                                                    </div>
-                                                </div>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            `);
-                            errorContainerSignUp.innerHTML = errorMessages.join('');
-                        });
+                        method: 'POST',
+                        body: formData,
+                        headers: {
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        }
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('messageContainer').innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                        btnSolicitar.disabled = false;
+                        btnSolicitar.style.backgroundColor = '';
+                        btnSolicitar.innerText = 'Solicitar';
+                    })
+                    .catch(error => {
+                        document.getElementById('errorContainer').innerHTML = `<div class="alert alert-danger">Erro ao processar a solicitação.</div>`;
+                        btnSolicitar.disabled = false;
+                        btnSolicitar.style.backgroundColor = '';
+                        btnSolicitar.innerText = 'Solicitar';
+                    });
                 });
             </script>
+
         </div>
     </div>
 
