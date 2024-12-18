@@ -90,7 +90,11 @@
                                 </div>
                             `;
                         messageContainerSignUp.innerHTML = successMessage;
-                        return;
+
+                        const signUpButton = document.getElementById('sign_up');
+                        signUpButton.disabled = false;
+                        signUpButton.style.backgroundColor = '#39673d';
+                        signUpButton.innerText = 'Tentar novamente';
                     }
 
                     const formData = new FormData();
@@ -159,6 +163,11 @@
                                 </div>
                             `);
                             errorContainerSignUp.innerHTML = errorMessages.join('');
+
+                            const signUpButton = document.getElementById('sign_up');
+                            signUpButton.disabled = false;
+                            signUpButton.style.backgroundColor = '#39673d';
+                            signUpButton.innerText = 'Tentar novamente';
                         });
                 });
             </script>

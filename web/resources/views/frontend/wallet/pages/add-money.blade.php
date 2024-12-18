@@ -137,7 +137,7 @@
                     <button type="button" class="button primary-button" name="btn_solicitar" id="btn_solicitar">Solicitar</button>
                 </div>
             </form>
-
+            <br>
             <div id="messageContainer"></div>
             <div id="errorContainer"></div>
 
@@ -161,22 +161,51 @@
                     })
                     .then(response => response.json())
                     .then(data => {
-                        document.getElementById('messageContainer').innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                        document.getElementById('messageContainer').innerHTML = `
+                            <div class="list media-list">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-media"><i class="fas fa-info-circle" style="color: #39673d"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">${data.message}</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        `;
+
                         btnSolicitar.disabled = false;
                         btnSolicitar.style.backgroundColor = '';
                         btnSolicitar.innerText = 'Solicitar';
                     })
                     .catch(error => {
-                        document.getElementById('errorContainer').innerHTML = `<div class="alert alert-danger">Erro ao processar a solicitação.</div>`;
+                        document.getElementById('errorContainer').innerHTML = `
+                            <div class="list media-list">
+                                <ul>
+                                    <li>
+                                        <a href="#" class="item-link item-content">
+                                            <div class="item-media"><i class="fas fa-info-circle" style="color: #39673d"></i></div>
+                                            <div class="item-inner">
+                                                <div class="item-title-row">
+                                                    <div class="item-title">Erro ao processar a solicitação.</div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        `;
                         btnSolicitar.disabled = false;
                         btnSolicitar.style.backgroundColor = '';
-                        btnSolicitar.innerText = 'Solicitar';
+                        btnSolicitar.innerText = 'Tentar novamente';
                     });
                 });
             </script>
-
         </div>
     </div>
-
 </div>
 

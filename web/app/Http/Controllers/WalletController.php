@@ -45,7 +45,7 @@ class WalletController extends Controller
         });
 
         return response()->json([
-            'message' => 'O seu pedido foi feito e será processado. Você receberá uma notificação.',
+            'message' => 'O seu pedido será processado.',
         ]);
     }
 }
