@@ -6,7 +6,11 @@ use App\Http\Controllers\SecurityPagesController;
 use App\Http\Controllers\SocialAuthController;
 use App\Http\Controllers\PreferenceController;
 use App\Http\Controllers\WalletController;
+use App\Http\Controllers\LandingController;
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('/landing', [LandingController::class, 'home'])->name('home');
+});
 // Acces Controller
 Route::middleware(['guest'])->group(function () {
     Route::get('/wellcome', [SecurityPagesController::class, 'wellcome'])->name('wellcome');
