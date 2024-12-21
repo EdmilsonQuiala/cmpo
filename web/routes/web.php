@@ -9,6 +9,7 @@ use App\Http\Controllers\WalletController;
 use App\Http\Controllers\LandingController;
 
 Route::middleware(['guest'])->group(function () {
+    Route::get('/', [LandingController::class, 'home'])->name('home');
     Route::get('/landing', [LandingController::class, 'home'])->name('home');
 });
 // Acces Controller
@@ -22,8 +23,7 @@ Route::middleware(['guest'])->group(function () {
 
 // Main Page Controller
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [MainPagesController::class, 'home'])->name('home');
-    Route::get('/home', [MainPagesController::class, 'home'])->name('home');
+    Route::get('/app', [MainPagesController::class, 'home'])->name('home');
 });
 
 // Preferences
