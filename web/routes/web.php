@@ -18,12 +18,14 @@ Route::middleware(['guest'])->group(function () {
     Route::match(['get', 'post'], '/access-account', [SecurityPagesController::class, 'AccessAccount'])->name('AccessAccount');
     Route::match(['get', 'post'], '/access-account', [SecurityPagesController::class, 'AccessAccount'])->name('login');
     Route::post('/sign-up', [SecurityPagesController::class, 'signUp'])->name('signUp');
+    Route::post('/login', [SecurityPagesController::class, 'signUp'])->name('signUp');
     Route::post('/sign-in', [SecurityPagesController::class, 'signIn'])->name('signIn');
 });
 
 // Main Page Controller
 Route::middleware(['auth'])->group(function () {
     Route::get('/app', [MainPagesController::class, 'home'])->name('home');
+    Route::get('/home', [MainPagesController::class, 'home'])->name('home');
 });
 
 // Preferences
