@@ -17,5 +17,13 @@ class MainPagesController extends Controller
         // Retorna a view com os dados do usuário, preferências e balance
         return view('frontend.home.main', compact('user', 'preference', 'balance'));
     }
+    public function logout()
+    {
+        // Realiza o logout do usuário
+        Auth::logout();
+
+        // Redireciona para a página de login com uma mensagem de sucesso
+        return redirect()->route('login')->with('status', 'Você saiu com sucesso!');
+    }
 }
 

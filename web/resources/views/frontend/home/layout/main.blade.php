@@ -37,6 +37,39 @@
 							<i class="fas fa-user"></i>
 							<span class="tabbar-label">Perfil</span>
 						</a>
+                        <a href="{{ route('logout') }}" id="logoutLink" class="tab-link">
+                            <i class="fas fa-sign-out-alt"></i>
+                            <span class="tabbar-label">Sair</span>
+                        </a>
+
+                        <script>
+                            document.addEventListener('DOMContentLoaded', function () {
+                                const logoutLink = document.getElementById('logoutLink');
+                                logoutLink.addEventListener('click', function (event) {
+                                    event.preventDefault(); // Impede o comportamento padrão do link
+
+                                    // Envia uma solicitação para a rota de logout
+                                    fetch("{{ route('logout') }}", {
+                                        method: 'GET', // Método HTTP
+                                        headers: {
+                                            'X-CSRF-TOKEN': '{{ csrf_token() }}', // Proteção CSRF
+                                        }
+                                    })
+                                    .then(response => {
+                                        if (response.ok) {
+                                            // Redireciona para a página de login após logout bem-sucedido
+                                            window.location.href = "{{ route('login') }}";
+                                        } else {
+                                            console.error('Erro ao realizar logout');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Erro:', error);
+                                    });
+                                });
+                            });
+                        </script>
+
 					</div>
 				</div>
 
