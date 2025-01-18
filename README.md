@@ -94,7 +94,7 @@ O **Afercon Pay (Carteira Móvel de Pagamentos Online)** é um aplicativo inovad
 
 ## Contato
 Para mais informações ou suporte, entre em contato:
-- **E-mail:** [info@edmilsonquiala.com](mailto:geral@aferconpay.com)
-- **Site:** [quialacorps.com](https://aferconpay.com)
+- **E-mail:** [geral@aferconpay.com](mailto:geral@aferconpay.com)
+- **Site:** [www.aferconpay.com](https://aferconpay.com)
 
 Agradecemos seu interesse no Afercon Pay!
